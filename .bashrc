@@ -22,6 +22,7 @@ builtin cd ~ && lsd -a
 fi
 }
 
+export EDITOR="lvim"
 
 extract() {
 	for archive in "$@"; do
@@ -73,5 +74,8 @@ alias docker-clean=' \
   docker image prune -f ; \
   docker network prune -f ; \
   docker volume prune -f '
+
+export MANPAGER='lvim +Man!'
+export PAGER='lvim +Man!'
 
 fastfetch
