@@ -1,84 +1,64 @@
-@import "includes/rose-pine.css";
+@import "./includes/tokyonight.css";
 
 * {
-  border: none;
-  border-radius: 0;
-  font-family: "sans";
-  font-weight: bold;
-  font-size: 14px;
-  min-height: 0;
+  font-size: 17px;
 }
 
 window#waybar {
-  background: transparent;
-  color: @text;
+  background: @bg;
+  color: @fg;
 }
 
-tooltip {
-  background: @base;
-}
-
-#workspaces,
-#window,
-#wireplumber,
-#memory,
 #network,
+#memory,
+#disk,
+#wireplumber,
 #tray,
-#clock {
-  background: @base;
-  padding: 0px 7px;
-  margin: 10px 10px 0px 10px;
+#clock,
+#custom-icon {
+  padding: 0 10px;
+  color: @black;
 }
 
-#workspaces {
-  background: @base;
-  margin-left: 10px;
-  padding-right: 0px;
-}
-
-#workspaces button {
-  padding: 5px;
-  color: @highlightmed;
-}
-
-#workspaces button.active {
-  color: @text;
-}
-
-#workspaces button.focused {
-  color: @surface;
-  background: @love;
-}
-
-#workspaces button.urgent {
-  color: @base;
-  background: @pine;
-}
-
-#workspaces button:hover {
-  background: @highlightlow;
-  color: @text;
-}
-
-#window {
-  margin-left: 60px;
-  margin-right: 60px;
+#custom-icon {
+  background: @cyan;
 }
 
 #network {
-  color: @love;
-}
-
-#clock {
-  color: @text;
-  background: @pine;
-  margin-right: 10px;
+  background: @red;
 }
 
 #memory {
-  color: #3e8fb0;
+  background: @yellow;
+}
+
+#disk {
+  background: @green;
 }
 
 #wireplumber {
-  color: @iris;
+  background: @blue;
+}
+
+#tray {
+  background: @black;
+}
+
+#clock {
+  background: @magenta;
+}
+
+#workspaces {
+  animation-duration: 0s;
+}
+
+#workspaces button {
+  color: @fg;
+  padding: 3px 0;
+  border: 0px;
+  border-radius: 0px;
+}
+
+#workspaces button.focused {
+  color: @cyan;
 }

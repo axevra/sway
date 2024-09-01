@@ -1,19 +1,27 @@
 {
   "height": 0,
+  "position": "top",
   "modules-left": [
-	  "sway/workspaces"
+    "custom/icon",
+    "sway/workspaces"
   ],
   "modules-center": [
-	  "sway/window"
+    "sway/window"
   ],
   "modules-right": [
-	  "memory",
-	  "wireplumber",
-      "tray",
-	  "clock"
+    "memory",
+    "disk",
+    "wireplumber",
+    "tray",
+    "clock"
   ],
+  "custom/icon": {
+    "format": "",
+    "on-click": "fuzzel",
+    "tooltip": false
+  },
   "sway/window": {
-	  "max-length": 40
+    "max-length": 40
   },
   "wireplumber": {
     "format": "{icon} {volume}",
@@ -31,7 +39,11 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     }
   },
   "wireplumber#microphone": {
@@ -42,12 +54,19 @@
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
     "scroll-step": 5
-  }, 
+  },
   "memory": {
     "interval": 30,
     "format": "RAM {}%",
     "max-length": 10,
-    "on-click": "kitty -e btop"
+    "tooltip": true,
+    "tooltip-format": "Memory - {used:0.1f}GB used",
+    "on-click": "wezterm -e btop"
   },
- 
+  "disk": {
+    "interval": 30,
+    "format": " {specific_used:0.1f}GB/{specific_total:0.1f}GB ({path})",
+    "path": "/",
+    "unit": "GB"
+  }
 }
