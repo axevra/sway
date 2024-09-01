@@ -114,8 +114,7 @@ set $ws3 "3:"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6:"
-set $ws5 "5"
-set $ws7 "7"
+set $ws7 "7:"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10:"
@@ -149,6 +148,7 @@ for_window [class="Steam"] move to workspace $ws3
 assign [app_id="firefox"] $ws2
 for_window [class="vesktop"] move to workspace $ws6
 for_window [class="Spotify"] move to workspace $ws10
+assign [app_id="telegram"] $ws7
 # Assign workspaces to outputs
 workspace $ws1 output HDMI-A-1
 workspace $ws2 output HDMI-A-1

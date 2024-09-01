@@ -12,7 +12,10 @@ alias c='clear'
 alias distro='cat /etc/lsb-release | grep DESCRIPT | sed -e "s|.*=||" | sed -e "s|\"||g"'
 alias dani="jerry --dub --rofi -i -d -c"
 alias ani="jerry --rofi -i -d -c"
+alias v="lvim"
+alias titus="curl -fsSL https://christitus.com/linux | sh"
 cd ()
+
 
 {
 if [ -n "$1" ]; then
