@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 eval "$(starship init bash)"
+
+#alias 
 alias ls="lsd -a"
 alias clock='clock-rs'
 alias cp='cp -i'
@@ -14,9 +16,10 @@ alias dani="jerry --dub --rofi -i -d -c"
 alias ani="jerry --rofi -i -d -c"
 alias v="lvim"
 alias titus="curl -fsSL https://christitus.com/linux | sh"
+
+##############################################################################################
+#fonctions
 cd ()
-
-
 {
 if [ -n "$1" ]; then
 builtin cd "$@" && lsd -a
@@ -25,7 +28,6 @@ builtin cd ~ && lsd -a
 fi
 }
 
-export EDITOR="lvim"
 
 extract() {
 	for archive in "$@"; do
@@ -69,16 +71,9 @@ cpp() {
     END { print "" }' total_size="$(stat -c '%s' "${1}")" count=0
 }
 
+######################################################################
+#export 
 export PATH="$HOME/.cargo/bin:$PATH"
-
-
-alias docker-clean=' \
-  docker container prune -f ; \
-  docker image prune -f ; \
-  docker network prune -f ; \
-  docker volume prune -f '
-
 export MANPAGER='lvim +Man!'
 export PAGER='lvim +Man!'
-
-fastfetch
+export EDITOR="lvim"
