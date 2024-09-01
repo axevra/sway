@@ -1,64 +1,84 @@
-@import "./includes/tokyonight.css";
+@import "includes/rose-pine.css";
 
 * {
-  font-size: 17px;
+  border: none;
+  border-radius: 0;
+  font-family: "sans";
+  font-weight: bold;
+  font-size: 14px;
+  min-height: 0;
 }
 
 window#waybar {
-  background: @bg;
-  color: @fg;
+  background: transparent;
+  color: @text;
 }
 
-#network,
-#memory,
-#disk,
+tooltip {
+  background: @base;
+}
+
+#workspaces,
+#window,
 #wireplumber,
+#memory,
+#network,
 #tray,
-#clock,
-#custom-icon {
-  padding: 0 10px;
-  color: @black;
-}
-
-#custom-icon {
-  background: @cyan;
-}
-
-#network {
-  background: @red;
-}
-
-#memory {
-  background: @yellow;
-}
-
-#disk {
-  background: @green;
-}
-
-#wireplumber {
-  background: @blue;
-}
-
-#tray {
-  background: @black;
-}
-
 #clock {
-  background: @magenta;
+  background: @base;
+  padding: 0px 7px;
+  margin: 10px 10px 0px 10px;
 }
 
 #workspaces {
-  animation-duration: 0s;
+  background: @base;
+  margin-left: 10px;
+  padding-right: 0px;
 }
 
 #workspaces button {
-  color: @fg;
-  padding: 3px 0;
-  border: 0px;
-  border-radius: 0px;
+  padding: 5px;
+  color: @highlightmed;
+}
+
+#workspaces button.active {
+  color: @text;
 }
 
 #workspaces button.focused {
-  color: @cyan;
+  color: @surface;
+  background: @love;
+}
+
+#workspaces button.urgent {
+  color: @base;
+  background: @pine;
+}
+
+#workspaces button:hover {
+  background: @highlightlow;
+  color: @text;
+}
+
+#window {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+#network {
+  color: @love;
+}
+
+#clock {
+  color: @text;
+  background: @pine;
+  margin-right: 10px;
+}
+
+#memory {
+  color: #3e8fb0;
+}
+
+#wireplumber {
+  color: @iris;
 }
