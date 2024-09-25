@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+eval "$(fzf --bash)"
 eval "$(starship init bash)"
+set -o vi
 
 #alias 
-alias ls="lsd -a"
+alias ls="eza -a"
+alias l="eza --color always --icons --hyperlink --group-directories-first --tree --level=1"
+alias ll="eza --color always --icons --hyperlink --group-directories-first --tree --level=1 --long --header --inode --links"
 alias clock='clock-rs'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -12,19 +16,21 @@ alias mkdir='mkdir -p'
 alias ping='ping -c 10'
 alias c='clear'
 alias distro='cat /etc/lsb-release | grep DESCRIPT | sed -e "s|.*=||" | sed -e "s|\"||g"'
-alias dani="jerry --dub --rofi -i -d -c"
-alias ani="jerry --rofi -i -d -c"
 alias v="lvim"
 alias titus="curl -fsSL https://christitus.com/linux | sh"
+alias rebuild="nixos-rebuild switch --use-remote-sudo --flake ~/.config/mid_os"
+alias cat="bat --style=plain --pager=never"
+alias rebuild-dry="nixos-rebuild dry-build --use-remote-sudo --flake ~/.config/mid_os";
+alias rebuild-test="nixos-rebuild test --use-remote-sudo --flake ~/.config/mid_os";
 
 ##############################################################################################
 #fonctions
 cd ()
 {
 if [ -n "$1" ]; then
-builtin cd "$@" && lsd -a
+builtin cd "$@" && eza -a
 else
-builtin cd ~ && lsd -a
+builtin cd ~ && eza -a
 fi
 }
 
@@ -36,6 +42,7 @@ extract() {
 			*.tar.bz2) tar xvjf "$archive" ;;
 			*.tar.gz) tar xvzf "$archive" ;;
 			*.bz2) bunzip2 "$archive" ;;
+      *.tar.xz) tar xf "$archive" ;; 
 			*.rar) rar x "$archive" ;;
 			*.gz) gunzip "$archive" ;;
 			*.tar) tar xvf "$archive" ;;
