@@ -1,3 +1,4 @@
+exec dbus-update-activation-environment --systemd --all
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -22,7 +23,10 @@ set $term kitty
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/dotfiles/wallpapers/04.jpg fill
+# output * bg ~/wallpaper.png fill
+exec_always --no-startup-id swww img ~/wallpaper/MidWallWaveDark-1920-1080.png --transition-type fade --transition-duration 2
+exec_always --no-startup-id swww init
+
 #
 # Example configuration:
 #
@@ -105,70 +109,67 @@ bindsym $mod+p exec ~/.config/rofi/powermenu.sh
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
-       # Note: workspaces can have any name you want, not just numbers.
-       # Set default workspace names
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10:"
 
+# Note: workspaces can have any name you want, not just numbers.
+# Set default workspace names
+    set $ws1 "1:"
+    set $ws2 "2:"
+    set $ws3 "3:"
+    set $ws4 "4:"
+    set $ws5 "5"
+    set $ws6 "6:"
+    set $ws7 "7:"
+    set $ws8 "8"
+    set $ws9 "9:"
+    set $ws10 "10:"
 # Switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws10
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Application assignments
-for_window [class="Steam"] move to workspace $ws3
-assign [app_id="firefox"] $ws2
-for_window [class="vesktop"] move to workspace $ws6
-for_window [class="Spotify"] move to workspace $ws10
-assign [app_id="telegram"] $ws7
+    assign [app_id="firefox"] $ws2
+    assign [class="vesktop"] $ws6
+    assign [app_id="org.telegram.desktop"] $ws7
+    assign [app_id="org.keepassxc.KeePassXC"] $ws9
+    assign [class="spotify"] $ws10
 # Assign workspaces to outputs
-workspace $ws1 output HDMI-A-1
-workspace $ws2 output HDMI-A-1
-workspace $ws3 output HDMI-A-1
-workspace $ws4 output HDMI-A-1
-workspace $ws5 output HDMI-A-1
-workspace $ws6 output HDMI-A-2
-workspace $ws7 output HDMI-A-2
-workspace $ws8 output HDMI-A-2
-workspace $ws9 output HDMI-A-2
-workspace $ws10 output HDMI-A-2
+    workspace $ws1 output HDMI-A-1
+    workspace $ws2 output HDMI-A-1
+    workspace $ws3 output HDMI-A-1
+    workspace $ws4 output HDMI-A-2
+    workspace $ws5 output HDMI-A-2
+    workspace $ws6 output HDMI-A-2
+    workspace $ws7 output HDMI-A-2
+    workspace $ws8 output HDMI-A-2
+    workspace $ws9 output HDMI-A-2
+    workspace $ws10 output HDMI-A-2
 # Automatically start certain applications in specific workspaces on startup
-exec swaymsg "workspace $ws1; exec kitty"
-exec swaymsg "workspace $ws6; exec vesktop"
-exec swaymsg "workspace $ws3; exec steam"
-exec swaymsg "workspace $ws10; exec spotify"
-
+    exec --no-startup-id swaymsg "workspace $ws1; exec kitty"
+    exec --no-startup-id swaymsg "workspace $ws6; exec vesktop"
+    exec --no-startup-id swaymsg "workspace $ws9; exec keepassxc"
+    exec --no-startup-id swaymsg "workspace $ws7; exec telegram-desktop"
+    exec --no-startup-id swaymsg "workspace $ws10; exec flatpak run com.spotify.Client"
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -186,9 +187,7 @@ exec swaymsg "workspace $ws10; exec spotify"
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
-#
 # Scratchpad:
-#
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
@@ -198,9 +197,7 @@ exec swaymsg "workspace $ws10; exec spotify"
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
-#
 # Resizing containers:
-#
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -223,24 +220,37 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
+# Status Bar: 
+
 # Read `man 5 sway-bar` for more information about this section.
 include /etc/sway/config.d/*
-for_window [class=".*"] border pixel 1
+for_window [app_id=".*"] border pixel 1
 
 #colors
-# class                 border    backgr.   text     indicator  child_border
-client.focused          #ff79c6  #ffb3da  #ffffff  #ff79c6   #ffb3da
-client.focused_inactive #ffccff  #ffcce6  #ffffff  #ffd6e7   #ffcce6
-client.unfocused        #ffccff  #ff99cc  #888888  #ffb3da   #ff99cc
-client.urgent           #ff79c6  #ff3366  #ffffff  #ff3366   #ff3366
-client.placeholder      #ffccff  #ff66b2  #ffffff  #ff66b2   #ff66b2
-client.background       #ffffff
+# app_id                 border    backgr.   text     indicator  child_border
+client.focused          #1a1a1a  #333333  #ffffff  #1a1a1a   #333333
+client.focused_inactive #262626  #4d4d4d  #ffffff  #333333   #4d4d4d
+client.unfocused        #262626  #4d4d4d  #888888  #333333   #4d4d4d
+client.urgent           #1a1a1a  #ff3333  #ffffff  #ff3333   #ff3333
+client.placeholder      #262626  #333333  #ffffff  #333333   #333333
+client.background       #000000
 gaps inner 5
 gaps outer 5
 exec_always autotiling-rs
 exec waybar
 bindsym $mod+shift+s exec grimblast copysave area
 bindsym $mod+f exec firefox
+bindsym $mod+b exec flatpak run io.github.zen_browser.zen
+
+input type:keyboard {
+  xkb_options ctrl:swapcaps
+}
+
+exec_always wl-paste -t text --watch clipman store --histpath="~/.cache/clipman.json"
+bindsym $mod+v exec clipman --histpath="~/.cache/clipman.json" pick -t rofi --tool-args="--conf=/etc/rofi/config --style=/etc/rofi/style.css"
+
+# exec ~/script/portal.sh
+# exec ~/script/env.sh
+exec systemctl --user start nm-applet
+exec rm ~/.cache/clipman.json
+
